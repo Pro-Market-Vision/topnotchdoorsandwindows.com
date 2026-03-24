@@ -1,11 +1,47 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hero from '../components/Hero.astro';
+import ServiceFilter from '../components/ServiceFilter.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
+import ContactForm from '../components/ContactForm.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Top Notch Doors & Windows | Fast, Reliable, Affordable Door & Window Services">
+  <Hero
+    headline="Fast, Reliable, Affordable"
+    subtitle="#1 in Door Repair & Window Repair Solutions"
+    description="We specialize in all types of door and window services including installation, repair, replacement, and custom solutions."
+    showCtas={true}
+    showStats={true}
+  />
+
+  <!-- About Teaser -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="font-heading text-4xl md:text-5xl tracking-wide mb-4">About Us</h2>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          At Top Notch Doors & Windows, we are dedicated to providing affordable, high-quality service for all your door and window needs. Whether it's installation, repair, or maintenance, our team ensures every project is completed with the highest standards of craftsmanship and customer care. We offer warranties and free estimates for every service we provide, so you can have peace of mind knowing you're getting the best value.
+        </p>
+        <a href="/about-us" class="inline-flex bg-primary text-white font-heading text-lg tracking-wide px-6 py-3 rounded hover:bg-black transition-colors">
+          LEARN MORE
+        </a>
+      </div>
+      <div>
+        <img src="/images/about-image.png" alt="Top Notch Doors & Windows team" class="rounded-lg shadow-lg w-full" />
+      </div>
+    </div>
+  </section>
+
+  <ServiceFilter />
+
+  <CTABanner heading="Schedule your free consultation today" />
+
+  <Testimonials />
+
+  <FAQ />
+
+  <ContactForm />
 </Layout>

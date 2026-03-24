@@ -1,0 +1,21 @@
+---
+interface Props {
+  heading?: string;
+}
+
+const { heading = "Schedule your free consultation today" } = Astro.props;
+---
+
+<section class="py-16 bg-primary text-white text-center">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="font-heading text-4xl md:text-5xl tracking-wide mb-6">{heading}</h2>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="tel:9549320764" class="bg-white text-primary font-heading text-xl tracking-wide px-8 py-4 rounded hover:bg-gray-100 transition-colors">
+        (954) 932-0764
+      </a>
+      <a href="/contact-us" class="border-2 border-white text-white font-heading text-xl tracking-wide px-8 py-4 rounded hover:bg-white hover:text-primary transition-colors">
+        FREE ESTIMATE
+      </a>
+    </div>
+  </div>
+</section>

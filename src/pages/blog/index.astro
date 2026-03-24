@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+
+const posts = [
+  {
+    title: "New Commercial Doors: What to Look For When Upgrading Your Business Entrance",
+    date: "March 5, 2026",
+    slug: "new-commercial-doors-what-to-look-for-when-upgrading-your-business-entrance",
+    excerpt: "When it comes to your business, first impressions matter — and nothing makes a stronger first impression than your front entrance.",
+    image: "/images/services/Commercial-Door-Services.jpg",
+  },
+];
+---
+
+<Layout title="Blog | Top Notch Doors & Windows">
+  <Hero
+    headline="Blog"
+    subtitle="Expert tips and insights for your door and window needs"
+  />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="group block bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow border border-gray-border/30">
+            <div class="aspect-[16/10] overflow-hidden">
+              <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            </div>
+            <div class="p-6">
+              <p class="text-sm text-gray-400 mb-2">{post.date}</p>
+              <h2 class="font-heading text-2xl tracking-wide text-primary group-hover:text-black transition-colors">{post.title}</h2>
+              <p class="text-gray-600 mt-2 text-sm">{post.excerpt}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

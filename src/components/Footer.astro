@@ -1,0 +1,65 @@
+---
+const serviceLinks = {
+  "Sliding Doors": ["Repair", "Replacement", "Installation"],
+  "Pocket Doors": ["Repair", "Installation"],
+  "Commercial Services": ["Commercial Door Services"],
+  "Glass & Window Services": ["Repair/Cutting", "Impact Window Installation", "Impact Window Replacement", "Impact Window Repair"],
+  "Screen Doors": ["Installation", "Repair"],
+  "Barn Doors": ["Installation", "Repair"],
+};
+---
+
+<footer class="bg-primary text-white">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Brand Column -->
+      <div>
+        <img src="/images/logo.png" alt="Top Notch Doors & Windows" class="h-16 w-auto mb-4 brightness-0 invert" />
+        <p class="text-gray-300 text-sm leading-relaxed">
+          Proudly serving Florida & New York with expert door and window solutions you can rely on. Quality craftsmanship, honest pricing, and service that's truly Top Notch.
+        </p>
+        <div class="mt-4">
+          <a href="tel:9549320764" class="text-white font-heading text-xl tracking-wide hover:underline">(954) 932-0764</a>
+          <p class="text-gray-400 text-sm mt-1">Servicing Florida & New York</p>
+        </div>
+      </div>
+
+      <!-- Service Links -->
+      {Object.entries(serviceLinks).slice(0, 2).map(([category, items]) => (
+        <div>
+          <h4 class="font-heading text-lg tracking-wide mb-3">{category}</h4>
+          <ul class="space-y-2">
+            {items.map((item) => (
+              <li><a href="#" class="text-gray-300 text-sm hover:text-white transition-colors">{item}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <!-- More Links -->
+      <div>
+        {Object.entries(serviceLinks).slice(2).map(([category, items]) => (
+          <div class="mb-4">
+            <h4 class="font-heading text-lg tracking-wide mb-2">{category}</h4>
+            <ul class="space-y-1">
+              {items.map((item) => (
+                <li><a href="#" class="text-gray-300 text-sm hover:text-white transition-colors">{item}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        <div class="mt-4 space-y-1">
+          <a href="/blog" class="block text-gray-300 text-sm hover:text-white transition-colors">Blog</a>
+          <a href="/contact-us" class="block text-gray-300 text-sm hover:text-white transition-colors">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="border-t border-gray-600">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <p class="text-gray-400 text-sm text-center">&copy; 2025 Top Notch Doors & Windows. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
