@@ -1,10 +1,23 @@
 ---
 import faqs from '../data/faqs.json';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
 ---
 
 <section class="py-16 bg-gray-light">
   <div class="max-w-3xl mx-auto px-4">
-    <h2 class="font-heading text-4xl md:text-5xl text-center mb-10 tracking-wide">Frequently Asked Questions</h2>
+    <h2 class="font-heading text-4xl md:text-5xl text-center mb-10 tracking-wide">Frequently Asked Questions About Door & Window Services</h2>
 
     <div class="space-y-3" id="faq-list">
       {faqs.map((faq, i) => (
@@ -23,6 +36,8 @@ import faqs from '../data/faqs.json';
     </div>
   </div>
 </section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
 <script>
   document.querySelectorAll('.faq-btn').forEach(btn => {

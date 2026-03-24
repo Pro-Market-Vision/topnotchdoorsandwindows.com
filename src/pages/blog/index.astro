@@ -13,9 +13,12 @@ const posts = [
 ];
 ---
 
-<Layout title="Blog | Top Notch Doors & Windows">
+<Layout
+  title="Door & Window Tips Blog | Top Notch Doors & Windows"
+  description="Read expert tips on sliding door repair, window installation, and maintenance from Top Notch Doors & Windows in Fort Lauderdale, FL."
+>
   <Hero
-    headline="Blog"
+    headline="Door & Window Expert Tips Blog"
     subtitle="Expert tips and insights for your door and window needs"
   />
 
@@ -25,7 +28,7 @@ const posts = [
         {posts.map((post) => (
           <a href={`/blog/${post.slug}`} class="group block bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow border border-gray-border/30">
             <div class="aspect-[16/10] overflow-hidden">
-              <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
             </div>
             <div class="p-6">
               <p class="text-sm text-gray-400 mb-2">{post.date}</p>

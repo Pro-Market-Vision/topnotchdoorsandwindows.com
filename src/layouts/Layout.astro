@@ -6,9 +6,11 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
 }
 
-const { title, description = "Top Notch Doors & Windows - Fast, Reliable, Affordable door and window repair, installation, and replacement services in Florida & New York." } = Astro.props;
+const { title, description = "Top Notch Doors & Windows offers expert sliding door repair, window repair, installation & replacement in Fort Lauderdale, FL. Free estimates. Call (954) 932-0764.", noindex = false } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
 <html lang="en">
@@ -16,11 +18,57 @@ const { title, description = "Top Notch Doors & Windows - Fast, Reliable, Afford
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href={canonicalURL.href} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:site_name" content="Top Notch Doors & Windows" />
+    <meta property="og:image" content={new URL('/images/logo.png', Astro.site).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/images/logo.png', Astro.site).href} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Top Notch Doors & Windows",
+      "description": "Expert sliding door repair, window repair, installation and replacement services in Fort Lauderdale and South Florida.",
+      "url": "https://topnotchdoorsandwindows.com",
+      "telephone": "+1-954-932-0764",
+      "image": "https://topnotchdoorsandwindows.com/images/logo.png",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Fort Lauderdale",
+        "addressRegion": "FL",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 26.1224,
+        "longitude": -80.1373
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Fort Lauderdale" },
+        { "@type": "City", "name": "Miami" },
+        { "@type": "City", "name": "Palm Beach" },
+        { "@type": "City", "name": "Weston" },
+        { "@type": "City", "name": "New York" }
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "sameAs": []
+    })} />
   </head>
   <body class="font-body text-primary antialiased">
     <Header />

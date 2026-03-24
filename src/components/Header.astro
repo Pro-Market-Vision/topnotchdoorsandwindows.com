@@ -1,46 +1,47 @@
 ---
 const services = {
   "Sliding Doors": [
-    { name: "Repair", href: "#" },
-    { name: "Replacement", href: "#" },
-    { name: "Installation", href: "#" },
+    { name: "Sliding Door Repair", href: "/contact-us" },
+    { name: "Sliding Door Replacement", href: "/contact-us" },
+    { name: "Sliding Door Installation", href: "/contact-us" },
   ],
   "Glass & Window Services": [
-    { name: "Repair/Cutting", href: "#" },
-    { name: "Impact Window Installation", href: "#" },
-    { name: "Impact Window Replacement", href: "#" },
-    { name: "Impact Window Repair", href: "#" },
+    { name: "Glass Repair & Cutting", href: "/contact-us" },
+    { name: "Impact Window Installation", href: "/contact-us" },
+    { name: "Impact Window Replacement", href: "/contact-us" },
+    { name: "Impact Window Repair", href: "/contact-us" },
   ],
   "Pocket Doors": [
-    { name: "Repair", href: "#" },
-    { name: "Installation", href: "#" },
+    { name: "Pocket Door Repair", href: "/contact-us" },
+    { name: "Pocket Door Installation", href: "/contact-us" },
   ],
   "Screen Doors": [
-    { name: "Installation", href: "#" },
-    { name: "Repair", href: "#" },
+    { name: "Screen Door Installation", href: "/contact-us" },
+    { name: "Screen Door Repair", href: "/contact-us" },
   ],
   "Commercial Services": [
-    { name: "Commercial Door Services", href: "#" },
+    { name: "Commercial Door Services", href: "/contact-us" },
   ],
   "Barn Doors": [
-    { name: "Installation", href: "#" },
-    { name: "Repair", href: "#" },
+    { name: "Barn Door Installation", href: "/contact-us" },
+    { name: "Barn Door Repair", href: "/contact-us" },
   ],
 };
 
 const locations = [
-  { name: "Miami", href: "#" },
-  { name: "Palm Beach", href: "#" },
-  { name: "Weston", href: "#" },
-  { name: "New York", href: "#" },
+  { name: "Fort Lauderdale, FL", href: "/contact-us" },
+  { name: "Miami, FL", href: "/contact-us" },
+  { name: "Palm Beach, FL", href: "/contact-us" },
+  { name: "Weston, FL", href: "/contact-us" },
+  { name: "New York, NY", href: "/contact-us" },
 ];
 ---
 
 <!-- Top Bar -->
 <div class="bg-primary text-white text-sm py-2">
   <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
-    <a href="tel:9549320764" class="hover:underline">(954) 932-0764</a>
-    <span>Serving Florida & New York</span>
+    <a href="tel:9549320764" class="hover:underline" aria-label="Call Top Notch Doors & Windows">(954) 932-0764</a>
+    <span>Serving Fort Lauderdale, Miami, Palm Beach & New York</span>
   </div>
 </div>
 
@@ -49,14 +50,14 @@ const locations = [
   <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-20">
     <!-- Logo -->
     <a href="/" class="flex-shrink-0">
-      <img src="/images/logo.png" alt="Top Notch Doors & Windows" class="h-16 w-auto" />
+      <img src="/images/logo.png" alt="Top Notch Doors & Windows - Sliding Door Repair Fort Lauderdale" class="h-16 w-auto" />
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden lg:flex items-center gap-8">
+    <nav class="hidden lg:flex items-center gap-8" aria-label="Main navigation">
       <!-- Services Dropdown -->
       <div class="relative group">
-        <button class="font-heading text-lg tracking-wide text-primary hover:text-black flex items-center gap-1 py-2">
+        <button class="font-heading text-lg tracking-wide text-primary hover:text-black flex items-center gap-1 py-2" aria-label="View our door and window services">
           SERVICES
           <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
         </button>
@@ -78,12 +79,12 @@ const locations = [
 
       <!-- Locations Dropdown -->
       <div class="relative group">
-        <button class="font-heading text-lg tracking-wide text-primary hover:text-black flex items-center gap-1 py-2">
+        <button class="font-heading text-lg tracking-wide text-primary hover:text-black flex items-center gap-1 py-2" aria-label="View service locations">
           LOCATIONS
           <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
         </button>
         <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-          <div class="bg-white shadow-xl rounded-lg py-2 min-w-[180px] border border-gray-100">
+          <div class="bg-white shadow-xl rounded-lg py-2 min-w-[200px] border border-gray-100">
             {locations.map((loc) => (
               <a href={loc.href} class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors">{loc.name}</a>
             ))}
@@ -97,12 +98,12 @@ const locations = [
     </nav>
 
     <!-- CTA Button (Desktop) -->
-    <a href="tel:9549320764" class="hidden lg:inline-flex bg-primary text-white font-heading text-lg tracking-wide px-6 py-3 rounded hover:bg-black transition-colors">
+    <a href="tel:9549320764" class="hidden lg:inline-flex bg-primary text-white font-heading text-lg tracking-wide px-6 py-3 rounded hover:bg-black transition-colors" aria-label="Call now for a free estimate">
       CALL NOW
     </a>
 
     <!-- Mobile Menu Button -->
-    <button id="mobile-menu-btn" class="lg:hidden p-2" aria-label="Open menu">
+    <button id="mobile-menu-btn" class="lg:hidden p-2" aria-label="Open navigation menu">
       <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
     </button>
   </div>

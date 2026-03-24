@@ -1,10 +1,29 @@
 ---
 import testimonials from '../data/testimonials.json';
+
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Top Notch Doors & Windows",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": String(testimonials.length),
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": testimonials.map(t => ({
+    "@type": "Review",
+    "author": { "@type": "Person", "name": t.name },
+    "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+    "reviewBody": t.quote
+  }))
+};
 ---
 
 <section class="py-16 bg-gray-light">
   <div class="max-w-7xl mx-auto px-4">
-    <h2 class="font-heading text-4xl md:text-5xl text-center mb-10 tracking-wide">What Our Clients Say</h2>
+    <h2 class="font-heading text-4xl md:text-5xl text-center mb-10 tracking-wide">What Our Clients Say About Our Door & Window Services</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {testimonials.map((t) => (
@@ -24,3 +43,5 @@ import testimonials from '../data/testimonials.json';
     </div>
   </div>
 </section>
+
+<script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />

@@ -2,7 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="New Commercial Doors: What to Look For When Upgrading Your Business Entrance | Top Notch Doors & Windows">
+<Layout
+  title="Commercial Door Upgrade Guide | Top Notch Doors & Windows"
+  description="Learn what to look for when upgrading your commercial doors — steel, aluminum, automatic options. Expert advice from Top Notch Doors & Windows in Fort Lauderdale."
+>
   <!-- Blog Hero -->
   <section class="relative bg-primary text-white py-16 md:py-20">
     <div class="max-w-4xl mx-auto px-4 text-center">
@@ -67,11 +70,26 @@ import Layout from '../../layouts/Layout.astro';
       </p>
 
       <div class="mt-12 p-6 bg-gray-light rounded-lg text-center">
-        <p class="text-gray-600 mb-4">Top Notch Doors & Windows specializes in commercial installation and replacement across Florida and New York.</p>
+        <p class="text-gray-600 mb-4">Top Notch Doors & Windows specializes in <a href="/" class="text-primary hover:underline">commercial door installation</a> and replacement across Florida and New York.</p>
         <a href="/contact-us" class="inline-flex bg-primary text-white font-heading text-lg tracking-wide px-6 py-3 rounded hover:bg-black transition-colors">
           GET A FREE ESTIMATE
         </a>
       </div>
+
+      <div class="mt-8 text-sm text-gray-500">
+        <p>Related: <a href="/" class="text-primary hover:underline">Sliding Door Repair Services</a> | <a href="/about-us" class="text-primary hover:underline">About Our Team</a> | <a href="/contact-us" class="text-primary hover:underline">Contact Us</a></p>
+      </div>
     </div>
   </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "New Commercial Doors: What to Look For When Upgrading Your Business Entrance",
+    "datePublished": "2026-03-05",
+    "dateModified": "2026-03-05",
+    "author": { "@type": "Organization", "name": "Top Notch Doors & Windows" },
+    "publisher": { "@type": "Organization", "name": "Top Notch Doors & Windows", "logo": { "@type": "ImageObject", "url": "https://topnotchdoorsandwindows.com/images/logo.png" } },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://topnotchdoorsandwindows.com/blog/new-commercial-doors-what-to-look-for-when-upgrading-your-business-entrance" }
+  })} />
 </Layout>
