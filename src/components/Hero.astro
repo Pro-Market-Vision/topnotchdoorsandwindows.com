@@ -11,38 +11,85 @@ const { headline, subtitle, description, showCtas = false, showStats = false } =
 ---
 
 <section class="relative bg-primary text-white py-24 md:py-32 overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/80"></div>
-  <div class="relative max-w-7xl mx-auto px-4 text-center">
-    <h1 class="font-heading text-5xl md:text-7xl tracking-wide mb-4">{headline}</h1>
-    {subtitle && <p class="text-xl md:text-2xl font-light mb-4 text-gray-200">{subtitle}</p>}
-    {description && <p class="text-base md:text-lg max-w-2xl mx-auto text-gray-300 mb-8">{description}</p>}
+  <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('/images/about-image.png')" role="img" aria-label="Top Notch Doors & Windows service"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/70"></div>
+  <div class="relative max-w-7xl mx-auto px-4">
+    <div class="max-w-2xl">
+      <h1 class="font-heading text-5xl md:text-7xl tracking-wide mb-4">{headline}</h1>
+      {subtitle && <p class="text-xl md:text-2xl font-light mb-4 text-gray-200">{subtitle}</p>}
+      {description && <p class="text-base md:text-lg text-gray-300 mb-8">{description}</p>}
 
-    {showCtas && (
-      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-        <a href="tel:9549320764" class="bg-white text-primary font-heading text-xl tracking-wide px-8 py-4 rounded hover:bg-gray-100 transition-colors">
-          (954) 932-0764
-        </a>
-        <a href="/contact-us" class="border-2 border-white text-white font-heading text-xl tracking-wide px-8 py-4 rounded hover:bg-white hover:text-primary transition-colors">
-          FREE ESTIMATE
-        </a>
-      </div>
-    )}
-
-    {showStats && (
-      <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto mt-8">
-        <div>
-          <p class="font-heading text-4xl md:text-5xl">1,000+</p>
-          <p class="text-sm text-gray-300 mt-1">Projects Completed</p>
+      {showCtas && (
+        <div class="flex flex-col sm:flex-row gap-4 mb-12">
+          <a href="tel:9549320764" class="bg-white text-primary font-heading text-xl tracking-wide px-8 py-4 rounded hover:bg-gray-100 transition-colors text-center">
+            (954) 932-0764
+          </a>
+          <a href="/contact-us" class="border-2 border-white text-white font-heading text-xl tracking-wide px-8 py-4 rounded hover:bg-white hover:text-primary transition-colors text-center">
+            FREE ESTIMATE
+          </a>
         </div>
-        <div>
-          <p class="font-heading text-4xl md:text-5xl">97%</p>
-          <p class="text-sm text-gray-300 mt-1">Referral Rate</p>
-        </div>
-        <div>
-          <p class="font-heading text-4xl md:text-5xl">10+</p>
-          <p class="text-sm text-gray-300 mt-1">Years Delivering Quality</p>
-        </div>
-      </div>
-    )}
+      )}
+    </div>
   </div>
 </section>
+
+{showStats && (
+  <div class="relative z-10 max-w-5xl mx-auto px-4 -mt-12">
+    <div class="rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.3)] p-8 md:p-10" style="background-color: #2563eb;" id="hero-stats">
+      <div class="grid grid-cols-3 gap-8 text-center text-white">
+        <div>
+          <p class="font-heading text-4xl md:text-5xl stat-number" data-target="1000" data-suffix="+">0</p>
+          <p class="text-sm text-blue-100 mt-2">Projects Completed</p>
+        </div>
+        <div>
+          <p class="font-heading text-4xl md:text-5xl stat-number" data-target="97" data-suffix="%">0</p>
+          <p class="text-sm text-blue-100 mt-2">Referral Rate</p>
+        </div>
+        <div>
+          <p class="font-heading text-4xl md:text-5xl stat-number" data-target="10" data-suffix="+">0</p>
+          <p class="text-sm text-blue-100 mt-2">Years Delivering Quality</p>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+<script>
+  function animateCounters() {
+    const stats = document.querySelectorAll('.stat-number');
+    if (!stats.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.dataset.target || '0');
+          const suffix = el.dataset.suffix || '';
+          const duration = 2000;
+          const start = performance.now();
+
+          function update(now: number) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(eased * target);
+
+            el.textContent = (target >= 1000 ? current.toLocaleString() : current) + suffix;
+
+            if (progress < 1) {
+              requestAnimationFrame(update);
+            }
+          }
+
+          requestAnimationFrame(update);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    stats.forEach((stat) => observer.observe(stat));
+  }
+
+  animateCounters();
+  document.addEventListener('astro:after-swap', animateCounters);
+</script>
