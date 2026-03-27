@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import ServiceFilter from '../../components/ServiceFilter.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import locations from '../../data/locations.json';
+
+export function getStaticPaths() {
+  return locations.map((loc) => ({
+    params: { slug: loc.slug },
+    props: { location: loc },
+  }));
+}
+
+const { location } = Astro.props;
+const pageTitle = `Door & Window Repair ${location.name} | Top Notch Doors & Windows`;
+const metaDescription = `Expert door repair & window repair solutions in ${location.name}, ${location.state}. Sliding doors, impact windows, pocket doors & more. Free estimates. Call ${location.phone}.`;
+---
+
+<Layout title={pageTitle} description={metaDescription}>
+  <Hero
+    headline={`Door Repair & Window Repair Solutions in ${location.name}`}
+    subtitle="Fast, Reliable, Affordable"
+    description={`At Top Notch Doors & Windows in ${location.name}, we specialize in a full range of residential and commercial door and window solutions.`}
+    showCtas={true}
+    showStats={true}
+  />
+
+  <!-- About Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="font-heading text-4xl md:text-5xl tracking-wide mb-4">Discover Unmatched Door Solutions at Top Notch Doors & Windows</h2>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          {location.description}
+        </p>
+        <a href="/about-us" class="inline-flex bg-primary text-white font-heading text-lg tracking-wide px-6 py-3 rounded hover:bg-black transition-colors">
+          LEARN MORE
+        </a>
+      </div>
+      <div>
+        <img src="/images/about-image.png" alt={`Top Notch Doors & Windows team serving ${location.name}`} class="rounded-lg shadow-lg w-full" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <ServiceFilter />
+
+  <CTABanner heading="Schedule your free consultation today" />
+
+  <Testimonials />
+
+  <FAQ />
+
+  <ContactForm heading="Get a free estimate" />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Top Notch Doors & Windows",
+    "description": `Door repair and window repair solutions in ${location.name}, ${location.state}.`,
+    "url": `https://topnotchdoorsandwindows.com/location/${location.slug}`,
+    "telephone": location.phone,
+    "image": "https://topnotchdoorsandwindows.com/images/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": location.name,
+      "addressRegion": location.state,
+      "addressCountry": "US"
+    },
+    "areaServed": location.areas.map((area: string) => ({ "@type": "City", "name": area }))
+  })} />
+</Layout>

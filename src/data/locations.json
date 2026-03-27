@@ -1,47 +1,43 @@
 [
   {
-    "name": "Fort Lauderdale",
-    "state": "FL",
-    "slug": "fort-lauderdale",
-    "phone": "(954) 932-0764",
-    "description": "Top Notch Doors & Windows provides expert sliding door repair, window installation, and replacement services throughout Fort Lauderdale and Broward County. From beachfront condos to suburban homes, our team delivers fast, reliable door and window solutions.",
-    "areas": ["Broward County", "Plantation", "Sunrise", "Davie", "Hollywood", "Pompano Beach", "Deerfield Beach", "Coral Springs"],
-    "highlights": ["Same-day sliding door repair available", "Impact window specialists for hurricane protection", "Serving all of Broward County", "Free on-site estimates"]
-  },
-  {
     "name": "Miami",
     "state": "FL",
     "slug": "miami",
     "phone": "(954) 932-0764",
-    "description": "Top Notch Doors & Windows serves Miami and Miami-Dade County with professional door repair, window installation, and glass services. Whether you need impact windows for hurricane season or a sliding door replacement, we've got you covered.",
-    "areas": ["Miami-Dade County", "Miami Beach", "Coral Gables", "Hialeah", "Doral", "Kendall", "Homestead", "North Miami"],
-    "highlights": ["Hurricane impact window installation", "Commercial and residential services", "Bilingual technicians available", "Free estimates across Miami-Dade"]
+    "secondaryPhone": "(646) 914-9984",
+    "description": "At Top Notch Doors & Windows in Miami, we are dedicated to providing affordable, high-quality service for all your door and window needs. Whether it's installation, repair, or maintenance, our team ensures every project is completed with the highest standards of craftsmanship and customer care. We offer warranties and free estimates for every service we provide, so you can have peace of mind knowing you're getting the best value.",
+    "areas": ["Miami", "Palm Beach", "Weston", "New York"],
+    "highlights": ["Free estimates for every service", "Warranties on parts and labor", "Same-day repairs available", "Commercial and residential services"]
   },
   {
     "name": "Palm Beach",
     "state": "FL",
     "slug": "palm-beach",
     "phone": "(954) 932-0764",
-    "description": "Top Notch Doors & Windows brings premium door and window services to Palm Beach County. From luxury homes to commercial properties, we provide expert sliding door repair, impact window installation, and custom solutions.",
-    "areas": ["Palm Beach County", "West Palm Beach", "Boca Raton", "Delray Beach", "Boynton Beach", "Jupiter", "Lake Worth", "Wellington"],
-    "highlights": ["Premium service for luxury properties", "Impact-rated windows and doors", "Serving all of Palm Beach County", "Warranty-backed workmanship"]
+    "secondaryPhone": "(646) 914-9984",
+    "description": "At Top Notch Doors & Windows in Palm Beach, we are dedicated to providing affordable, high-quality service for all your door and window needs. Whether it's installation, repair, or maintenance, our team ensures every project is completed with the highest standards of craftsmanship and customer care. We offer warranties and free estimates for every service we provide, so you can have peace of mind knowing you're getting the best value.",
+    "areas": ["Miami", "Palm Beach", "Weston", "New York"],
+    "highlights": ["Free estimates for every service", "Warranties on parts and labor", "Same-day repairs available", "Commercial and residential services"]
   },
   {
     "name": "Weston",
     "state": "FL",
     "slug": "weston",
     "phone": "(954) 932-0764",
-    "description": "Top Notch Doors & Windows proudly serves Weston and the surrounding communities with reliable sliding door repair, window replacement, and installation services. Our local team knows the area and delivers fast, quality work.",
-    "areas": ["Weston", "Southwest Ranches", "Pembroke Pines", "Miramar", "Cooper City", "Davie"],
-    "highlights": ["Local Weston-based technicians", "Fast response times", "Impact window and door specialists", "Free no-obligation estimates"]
+    "secondaryPhone": "(646) 914-9984",
+    "description": "At Top Notch Doors & Windows in Weston, we are dedicated to providing affordable, high-quality service for all your door and window needs. Whether it's installation, repair, or maintenance, our team ensures every project is completed with the highest standards of craftsmanship and customer care. We offer warranties and free estimates for every service we provide, so you can have peace of mind knowing you're getting the best value.",
+    "areas": ["Miami", "Palm Beach", "Weston", "New York"],
+    "highlights": ["Free estimates for every service", "Warranties on parts and labor", "Same-day repairs available", "Commercial and residential services"]
   },
   {
     "name": "New York",
     "state": "NY",
     "slug": "new-york",
-    "phone": "(954) 932-0764",
-    "description": "Top Notch Doors & Windows now serves the New York metro area with professional door and window services. From sliding door repairs to custom window installations, our experienced team brings the same quality service to the Northeast.",
-    "areas": ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island", "Long Island", "Westchester"],
-    "highlights": ["Now serving the New York metro area", "Apartment and condo specialists", "Commercial door services available", "Free estimates for all projects"]
+    "phone": "(646) 914-9984",
+    "secondaryPhone": "(954) 932-0764",
+    "address": "130 7th Ave unit 3, New York, NY 10014",
+    "description": "At Top Notch Doors & Windows in New York, we are dedicated to providing affordable, high-quality service for all your door and window needs. Whether it's installation, repair, or maintenance, our team ensures every project is completed with the highest standards of craftsmanship and customer care. We offer warranties and free estimates for every service we provide, so you can have peace of mind knowing you're getting the best value.",
+    "areas": ["Miami", "Palm Beach", "Weston", "New York"],
+    "highlights": ["Free estimates for every service", "Warranties on parts and labor", "Same-day repairs available", "Commercial and residential services"]
   }
 ]
