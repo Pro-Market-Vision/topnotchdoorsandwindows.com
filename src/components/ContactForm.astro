@@ -4,13 +4,20 @@ interface Props {
 }
 
 const { heading = "Get a free estimate" } = Astro.props;
+const WEB3FORMS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+const RECAPTCHA_SITE_KEY = "YOUR_RECAPTCHA_SITE_KEY";
 ---
 
 <section class="py-16 bg-white">
   <div class="max-w-2xl mx-auto px-4">
     <h2 class="font-heading text-4xl md:text-5xl text-center mb-8 tracking-wide">{heading}</h2>
 
-    <form class="space-y-4" action="#" method="POST">
+    <form class="space-y-4" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+      <input type="hidden" name="subject" value="New Contact Form Submission - Top Notch Doors & Windows" />
+      <input type="hidden" name="from_name" value="Top Notch Doors & Windows Website" />
+      <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+      <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
       <div>
         <input
           type="text"
@@ -47,10 +54,60 @@ const { heading = "Get a free estimate" } = Astro.props;
       </div>
       <button
         type="submit"
+        id="submit-btn"
         class="w-full bg-primary text-white font-heading text-xl tracking-wide py-4 rounded-lg hover:bg-black transition-colors"
       >
         SEND
       </button>
+      <div id="form-result" class="text-center text-sm mt-2 hidden"></div>
     </form>
   </div>
 </section>
+
+<script define:vars={{ RECAPTCHA_SITE_KEY }}>
+  // Load reCAPTCHA v3
+  const script = document.createElement('script');
+  script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+  document.head.appendChild(script);
+
+  const form = document.getElementById('contact-form');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const result = document.getElementById('form-result');
+    btn.textContent = 'SENDING...';
+    btn.disabled = true;
+
+    try {
+      // Get reCAPTCHA token
+      if (window.grecaptcha) {
+        const token = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' });
+        document.getElementById('recaptchaResponse').value = token;
+      }
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        result.textContent = 'Thank you! Your message has been sent successfully.';
+        result.className = 'text-center text-sm mt-2 text-green-600';
+        result.classList.remove('hidden');
+        form.reset();
+      } else {
+        result.textContent = 'Something went wrong. Please try again or call us directly.';
+        result.className = 'text-center text-sm mt-2 text-red-600';
+        result.classList.remove('hidden');
+      }
+    } catch {
+      result.textContent = 'Something went wrong. Please try again or call us directly.';
+      result.className = 'text-center text-sm mt-2 text-red-600';
+      result.classList.remove('hidden');
+    }
+
+    btn.textContent = 'SEND';
+    btn.disabled = false;
+  });
+</script>
