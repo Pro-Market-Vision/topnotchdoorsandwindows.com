@@ -6,10 +6,11 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  keywords?: string;
   noindex?: boolean;
 }
 
-const { title, description = "Top Notch Doors & Windows offers expert sliding door repair, window repair, installation & replacement in Fort Lauderdale, FL. Free estimates. Call (954) 932-0764.", noindex = false } = Astro.props;
+const { title, description = "Top Notch Doors & Windows offers expert sliding door repair, window repair, installation & replacement in Fort Lauderdale, FL. Free estimates. Call (954) 932-0764.", keywords = "sliding door repair, window repair, door installation, window installation, Fort Lauderdale, South Florida, impact windows, pocket doors, glass door repair", noindex = false } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -21,6 +22,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonicalURL.href} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -33,6 +35,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:image" content={new URL('/images/logo.png', Astro.site).href} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.google.com" />
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <style>
+      @font-face { font-display: swap; }
+    </style>
     <title>{title}</title>
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
@@ -68,6 +77,36 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         "closes": "23:59"
       },
       "sameAs": []
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://topnotchdoorsandwindows.com/" }
+      ]
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Sliding Door Repair",
+      "provider": { "@type": "LocalBusiness", "name": "Top Notch Doors & Windows" },
+      "areaServed": [
+        { "@type": "City", "name": "Fort Lauderdale" },
+        { "@type": "City", "name": "Miami" },
+        { "@type": "City", "name": "Palm Beach" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Door & Window Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sliding Door Repair" }},
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Window Installation" }},
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Impact Window Installation" }},
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pocket Door Repair" }},
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Glass Door Repair" }},
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Window Replacement" }}
+        ]
+      }
     })} />
   </head>
   <body class="font-body text-primary antialiased">

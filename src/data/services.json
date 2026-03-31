@@ -1,85 +1,85 @@
 [
   {
     "name": "Sliding Door Repair",
-    "image": "/images/services/Sliding-Door-Repair.jpg",
+    "image": "/images/services/Sliding-Door-Repair.webp",
     "category": "Sliding Doors",
     "slug": "sliding-door-repair"
   },
   {
     "name": "Sliding Door Replacement",
-    "image": "/images/services/Sliding-Door-Replacement.jpg",
+    "image": "/images/services/Sliding-Door-Replacement.webp",
     "category": "Sliding Doors",
     "slug": "sliding-door-replacement"
   },
   {
     "name": "Sliding Door Installation",
-    "image": "/images/services/Sliding-Door-Installation-1.jpg",
+    "image": "/images/services/Sliding-Door-Installation-1.webp",
     "category": "Sliding Doors",
     "slug": "sliding-door-installation"
   },
   {
     "name": "Pocket Door Repair",
-    "image": "/images/services/Pocket-Door-Repair.jpg",
+    "image": "/images/services/Pocket-Door-Repair.webp",
     "category": "Pocket Doors",
     "slug": "pocket-door-repair"
   },
   {
     "name": "Pocket Door Installation",
-    "image": "/images/services/Pocket-Door-Installation.jpg",
+    "image": "/images/services/Pocket-Door-Installation.webp",
     "category": "Pocket Doors",
     "slug": "pocket-door-installation"
   },
   {
     "name": "Barn Door Installation",
-    "image": "/images/services/Barn-Door-Installation.jpg",
+    "image": "/images/services/Barn-Door-Installation.webp",
     "category": "Barn Doors",
     "slug": "barn-door-installation"
   },
   {
     "name": "Barn Door Repair",
-    "image": "/images/services/Barn-Door-Repair.jpg",
+    "image": "/images/services/Barn-Door-Repair.webp",
     "category": "Barn Doors",
     "slug": "barn-door-repair"
   },
   {
     "name": "Commercial Door Services",
-    "image": "/images/services/Commercial-Door-Services.jpg",
+    "image": "/images/services/Commercial-Door-Services.webp",
     "category": "Commercial",
     "slug": "commercial-door-services"
   },
   {
     "name": "Glass Repair and Cutting",
-    "image": "/images/services/Glass-Repair-and-Cutting.jpg",
+    "image": "/images/services/Glass-Repair-and-Cutting.webp",
     "category": "Glass & Window",
     "slug": "glass-repair-and-cutting"
   },
   {
     "name": "Impact Window Installation",
-    "image": "/images/services/Impact-Window-Installation.jpg",
+    "image": "/images/services/Impact-Window-Installation.webp",
     "category": "Glass & Window",
     "slug": "impact-window-installation"
   },
   {
     "name": "Impact Window Replacement",
-    "image": "/images/services/Impact-Window-Replacement.jpg",
+    "image": "/images/services/Impact-Window-Replacement.webp",
     "category": "Glass & Window",
     "slug": "impact-window-replacement"
   },
   {
     "name": "Impact Window Repair",
-    "image": "/images/services/Impact-Window-Repair.jpg",
+    "image": "/images/services/Impact-Window-Repair.webp",
     "category": "Glass & Window",
     "slug": "impact-window-repair"
   },
   {
     "name": "Screen Door Installation",
-    "image": "/images/services/Screen-Door-Installation.jpg",
+    "image": "/images/services/Screen-Door-Installation.webp",
     "category": "Screen Doors",
     "slug": "screen-door-installation"
   },
   {
     "name": "Screen Door Repair",
-    "image": "/images/services/Screen-Door-Repair.jpg",
+    "image": "/images/services/Screen-Door-Repair.webp",
     "category": "Screen Doors",
     "slug": "screen-door-repair"
   }
