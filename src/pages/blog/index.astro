@@ -1,64 +1,70 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Hero from '../../components/Hero.astro';
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import InnerHero from "@/components/InnerHero.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import InternalLinksBlock from "@/components/InternalLinksBlock.astro";
+import { ALL_SERVICES } from "@/data/site";
 
-const posts = [
+const featuredServices = ALL_SERVICES.slice(0, 6).map((s) => ({
+  href: s.href,
+  label: s.title,
+  description: `Read about our ${s.title.toLowerCase()} options and pricing.`,
+}));
+
+const POSTS = [
   {
     title: "New Commercial Doors: What to Look For When Upgrading Your Business Entrance",
-    date: "March 5, 2026",
-    slug: "new-commercial-doors-what-to-look-for-when-upgrading-your-business-entrance",
-    excerpt: "When it comes to your business, first impressions matter — and nothing makes a stronger first impression than your front entrance.",
-    image: "/images/services/Commercial-Door-Services.webp",
-  },
-  {
-    title: "5 Signs You Need Sliding Door Replacement in Fort Lauderdale",
-    date: "March 25, 2025",
-    slug: "signs-you-need-sliding-door-replacement",
-    excerpt: "Not sure if your sliding door needs replacement? Here are five telltale signs it is time to upgrade your sliding door in Fort Lauderdale.",
-    image: "/images/services/Sliding-Door-Replacement.webp",
-  },
-  {
-    title: "Impact Windows vs Regular Windows: Which Is Best for South Florida?",
-    date: "March 20, 2025",
-    slug: "impact-windows-vs-regular-windows-south-florida",
-    excerpt: "Compare impact windows vs regular windows for South Florida homes. Learn about hurricane protection, energy savings, and insurance benefits.",
-    image: "/images/services/Impact-Window-Installation.webp",
-  },
-  {
-    title: "How Much Does Sliding Door Repair Cost in Fort Lauderdale? (2025 Guide)",
-    date: "March 15, 2025",
-    slug: "how-much-does-sliding-door-repair-cost-fort-lauderdale",
-    excerpt: "Find out what sliding door repair costs in Fort Lauderdale in 2025. Learn about pricing factors, common repairs, and how to save money.",
-    image: "/images/services/Sliding-Door-Repair.webp",
+    excerpt:
+      "When it comes to your business, first impressions matter — and nothing makes a stronger first impression than your front entrance. If you're considering upgrading…",
+    href: "/new-commercial-doors-what-to-look-for-when-upgrading-your-business-entrance/",
+    image: "/images/blog/commercial-door-entrance-v2.jpg",
   },
 ];
 ---
 
 <Layout
-  title="Door & Window Tips Blog | Top Notch Doors & Windows"
-  description="Read expert tips on sliding door repair, window installation, and maintenance from Top Notch Doors & Windows in Fort Lauderdale, FL."
+  title="Blog — Door & Window Tips | Top Notch Doors & Windows"
+  description="Expert tips, guides, and insights on doors, windows, and home improvement from the pros at Top Notch Doors & Windows — serving Florida and New York."
 >
-  <Hero
-    headline="Door & Window Expert Tips Blog"
-    subtitle="Expert tips and insights for your door and window needs"
-  />
+  <SiteHeader />
+  <main class="flex-1">
+    <InnerHero title="Our Blog" kicker="Tips & Insights" />
 
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {posts.map((post) => (
-          <a href={`/blog/${post.slug}`} class="group block bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow border border-gray-border/30">
-            <div class="aspect-[16/10] overflow-hidden">
-              <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <p class="text-sm text-gray-400 mb-2">{post.date}</p>
-              <h2 class="font-heading text-2xl tracking-wide text-primary group-hover:text-black transition-colors">{post.title}</h2>
-              <p class="text-gray-600 mt-2 text-sm">{post.excerpt}</p>
-            </div>
-          </a>
-        ))}
+    <section class="bg-white">
+      <div class="mx-auto max-w-[1240px] px-5 lg:px-12 py-20 lg:py-24">
+        <p class="text-center max-w-[700px] mx-auto text-[16px] leading-[28px] text-[#7A7A7A]">
+          Expert tips and guides on doors, windows, and home improvement — serving Florida & New York.
+        </p>
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {POSTS.map((post) => (
+            <article class="bg-white shadow-[0_4px_16px_rgba(0,0,0,0.05)]">
+              <a href={post.href} class="block aspect-[3/2] overflow-hidden">
+                <img src={post.image} alt={post.title} class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+              </a>
+              <div class="p-6">
+                <h3 class="font-[Bebas_Neue] text-[22px] leading-[1.15] text-[#1D1D1D]">
+                  <a href={post.href} class="hover:text-[#004AAD]">{post.title}</a>
+                </h3>
+                <p class="mt-3 text-[15px] leading-[26px] text-[#7A7A7A]">{post.excerpt}</p>
+                <a href={post.href} class="mt-4 inline-block text-[13px] font-medium uppercase tracking-wider text-[#004AAD]">Read More →</a>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <InternalLinksBlock
+      kicker="From the Workshop"
+      heading="Featured Services to Explore"
+      intro="While you're here, take a look at some of our most popular door and window services."
+      links={featuredServices}
+      columns={3}
+    />
+
+    <ContactSection />
+  </main>
+  <SiteFooter />
 </Layout>

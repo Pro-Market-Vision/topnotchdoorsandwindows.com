@@ -1,50 +1,86 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import ServiceFilter from '../components/ServiceFilter.astro';
-import CTABanner from '../components/CTABanner.astro';
-import Testimonials from '../components/Testimonials.astro';
-import FAQ from '../components/FAQ.astro';
-import ContactForm from '../components/ContactForm.astro';
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import HeroSection from "@/components/HeroSection.astro";
+import CountersSection from "@/components/CountersSection.astro";
+import AboutSection from "@/components/AboutSection.astro";
+import ServicesSection from "@/components/ServicesSection.astro";
+import CtaBannerSection from "@/components/CtaBannerSection.astro";
+import TestimonialsSection from "@/components/TestimonialsSection.astro";
+import FaqSection from "@/components/FaqSection.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import InternalLinksBlock from "@/components/InternalLinksBlock.astro";
+import { FAQS, LOCATIONS } from "@/data/site";
+
+const locationLinks = LOCATIONS.map((loc) => ({
+  href: `/location/${loc.slug}/`,
+  label: `${loc.name}, ${loc.state}`,
+  description: `Door & window installation, repair, and replacement in ${loc.name}.`,
+}));
+
+const blogLinks = [
+  {
+    href: "/new-commercial-doors-what-to-look-for-when-upgrading-your-business-entrance/",
+    label: "New Commercial Doors: What to Look For",
+    description: "A complete buyer's guide for upgrading your business entrance.",
+  },
+  {
+    href: "/about-us/",
+    label: "About Top Notch Doors & Windows",
+    description: "10+ years, 1,000+ projects, 97% referral rate. Meet our team.",
+  },
+  {
+    href: "/contact-us/",
+    label: "Get a Free Estimate",
+    description: "Have a question or need a quick repair? Reach out anytime.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
 ---
 
 <Layout
-  title="Sliding Door Repair Fort Lauderdale | Top Notch Doors & Windows"
-  description="Top Notch Doors & Windows provides expert sliding door repair, window installation & replacement in Fort Lauderdale, FL. Free estimates. Call (954) 932-0764."
+  title="Door Repair & Window Services in Florida & New York | Top Notch Doors & Windows"
+  description="Expert sliding door, pocket door, barn door, screen door, and impact window repair, installation, and replacement across Florida and New York. Free estimates. Call (954) 932-0764."
+  schema={faqSchema}
 >
-  <Hero
-    headline="Sliding Door & Window Repair in Fort Lauderdale"
-    subtitle="#1 in Door Repair & Window Repair Solutions"
-    description="We specialize in sliding door repair, impact window installation, pocket door services, and custom solutions for homes and businesses in South Florida."
-    showCtas={true}
-    showStats={true}
-  />
+  <SiteHeader />
+  <main class="flex-1">
+    <HeroSection />
+    <CountersSection />
+    <AboutSection />
+    <ServicesSection />
+    <InternalLinksBlock
+      kicker="Service Areas"
+      heading="Door & Window Service Across Florida & New York"
+      intro="We proudly serve homeowners and businesses across multiple cities. Choose your location for area-specific service info."
+      links={locationLinks}
+      columns={4}
+    />
 
-  <!-- About Teaser -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="font-heading text-4xl md:text-5xl tracking-wide mb-4">About Top Notch Doors & Windows</h2>
-        <p class="text-gray-600 leading-relaxed mb-6">
-          At Top Notch Doors & Windows, we are dedicated to providing affordable, high-quality service for all your door and window needs in Fort Lauderdale and across South Florida. Whether it's <a href="/services/sliding-door-installation" class="text-primary hover:underline">sliding door installation</a>, <a href="/services/sliding-door-repair" class="text-primary hover:underline">sliding door repair</a>, or maintenance, our team ensures every project is completed with the highest standards of craftsmanship and customer care. From <a href="/services/impact-window-installation" class="text-primary hover:underline">impact window installation</a> to <a href="/services/pocket-door-repair" class="text-primary hover:underline">pocket door repair</a> and <a href="/services/glass-repair-and-cutting" class="text-primary hover:underline">glass repair</a>, we offer warranties and free estimates for every service we provide, so you can have peace of mind knowing you're getting the best value.
-        </p>
-        <a href="/about-us" class="inline-flex bg-primary text-white font-heading text-lg tracking-wide px-6 py-3 rounded hover:bg-black transition-colors">
-          LEARN MORE ABOUT US
-        </a>
-      </div>
-      <div>
-        <img src="/images/services/Sliding-Door-Repair.webp" alt="Top Notch Doors & Windows technician repairing a sliding door in Fort Lauderdale" class="rounded-lg shadow-lg w-full" loading="lazy" />
-      </div>
-    </div>
-  </section>
+    <CtaBannerSection />
+    <TestimonialsSection />
 
-  <ServiceFilter />
+    <InternalLinksBlock
+      kicker="Learn More"
+      heading="Explore Our Resources"
+      intro="From expert tips to company background, get to know Top Notch Doors & Windows before you book."
+      links={blogLinks}
+      columns={3}
+      variant="dark"
+    />
 
-  <CTABanner heading="Schedule Your Free Door & Window Consultation Today" />
-
-  <Testimonials />
-
-  <FAQ />
-
-  <ContactForm />
+    <FaqSection />
+    <ContactSection />
+  </main>
+  <SiteFooter />
 </Layout>

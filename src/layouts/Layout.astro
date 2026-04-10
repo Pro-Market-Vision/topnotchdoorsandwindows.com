@@ -1,119 +1,236 @@
 ---
-import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import "../styles/global.css";
+import { COMPANY, PHONE_DISPLAY, PHONE_TEL, LOCATIONS } from "@/data/site";
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
-  keywords?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: "website" | "article";
   noindex?: boolean;
+  schema?: Record<string, any> | Record<string, any>[];
 }
 
-const { title, description = "Top Notch Doors & Windows offers expert sliding door repair, window repair, installation & replacement in Fort Lauderdale, FL. Free estimates. Call (954) 932-0764.", keywords = "sliding door repair, window repair, door installation, window installation, Fort Lauderdale, South Florida, impact windows, pocket doors, glass door repair", noindex = false } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const SITE_URL = "https://topnotchdoorsandwindows.com";
+const DEFAULT_TITLE = "Door Repair & Window Services | Top Notch Doors & Windows";
+const DEFAULT_DESCRIPTION = "Top Notch Doors & Windows specializes in door and window installation, repair, and replacement across Florida and New York. Free estimates. Call (954) 932-0764.";
+const DEFAULT_OG_IMAGE = "/images/hero-banner-1.jpg";
+
+const {
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESCRIPTION,
+  canonical,
+  ogImage = DEFAULT_OG_IMAGE,
+  ogType = "website",
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const pathname = Astro.url.pathname.endsWith("/") || Astro.url.pathname.includes(".")
+  ? Astro.url.pathname
+  : Astro.url.pathname + "/";
+const canonicalUrl = canonical || `${SITE_URL}${pathname}`;
+const absoluteOgImage = ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`;
+
+// Default LocalBusiness schema — always present site-wide
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${SITE_URL}/#business`,
+  name: COMPANY,
+  description: DEFAULT_DESCRIPTION,
+  url: SITE_URL,
+  telephone: PHONE_DISPLAY,
+  image: `${SITE_URL}${DEFAULT_OG_IMAGE}`,
+  priceRange: "$$",
+  areaServed: LOCATIONS.map((l) => ({
+    "@type": "City",
+    name: l.name,
+    containedInPlace: { "@type": "State", name: l.state === "FL" ? "Florida" : "New York" },
+  })),
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "FL",
+    addressCountry: "US",
+  },
+  sameAs: [],
+};
+
+const schemaBlocks = schema
+  ? Array.isArray(schema)
+    ? [localBusinessSchema, ...schema]
+    : [localBusinessSchema, schema]
+  : [localBusinessSchema];
 ---
+
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="canonical" href={canonicalURL.href} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {!noindex && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
+    <meta name="theme-color" content="#004AAD" />
+    <meta name="format-detection" content="telephone=yes" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={COMPANY} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL.href} />
-    <meta property="og:site_name" content="Top Notch Doors & Windows" />
-    <meta property="og:image" content={new URL('/images/logo.png', Astro.site).href} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={absoluteOgImage} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL('/images/logo.png', Astro.site).href} />
+    <meta name="twitter:image" content={absoluteOgImage} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/seo/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/seo/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/seo/apple-touch-icon.png" />
+
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
+    <!-- Preload LCP hero image -->
+    <link rel="preload" as="image" href="/images/hero-banner-1.jpg" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://www.google.com" />
-    <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <style>
-      @font-face { font-display: swap; }
-    </style>
-    <title>{title}</title>
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Top Notch Doors & Windows",
-      "description": "Expert sliding door repair, window repair, installation and replacement services in Fort Lauderdale and South Florida.",
-      "url": "https://topnotchdoorsandwindows.com",
-      "telephone": "+1-954-932-0764",
-      "image": "https://topnotchdoorsandwindows.com/images/logo.png",
-      "priceRange": "$$",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Fort Lauderdale",
-        "addressRegion": "FL",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 26.1224,
-        "longitude": -80.1373
-      },
-      "areaServed": [
-        { "@type": "City", "name": "Fort Lauderdale" },
-        { "@type": "City", "name": "Miami" },
-        { "@type": "City", "name": "Palm Beach" },
-        { "@type": "City", "name": "Weston" },
-        { "@type": "City", "name": "New York" }
-      ],
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-        "opens": "00:00",
-        "closes": "23:59"
-      },
-      "sameAs": []
-    })} />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://topnotchdoorsandwindows.com/" }
-      ]
-    })} />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "serviceType": "Sliding Door Repair",
-      "provider": { "@type": "LocalBusiness", "name": "Top Notch Doors & Windows" },
-      "areaServed": [
-        { "@type": "City", "name": "Fort Lauderdale" },
-        { "@type": "City", "name": "Miami" },
-        { "@type": "City", "name": "Palm Beach" }
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Door & Window Services",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sliding Door Repair" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Window Installation" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Impact Window Installation" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pocket Door Repair" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Glass Door Repair" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Window Replacement" }}
-        ]
-      }
-    })} />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;700;900&family=Roboto+Slab:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://www.google.com" />
+    <link rel="dns-prefetch" href="https://api.web3forms.com" />
+    <link rel="dns-prefetch" href="https://hooks.zapier.com" />
+
+    <!-- Structured Data -->
+    {schemaBlocks.map((block) => (
+      <script type="application/ld+json" set:html={JSON.stringify(block)} />
+    ))}
+
+    <!-- Universal Form Handler: Web3Forms + Zapier + UTM + reCaptcha v3 + Honeypot -->
+    <script is:inline>
+      (function() {
+        // Inject honeypot field into all forms (bots fill it, humans don't see it)
+        document.addEventListener('DOMContentLoaded', function() {
+          document.querySelectorAll('[data-form-name]').forEach(function(form) {
+            var hp = document.createElement('input');
+            hp.type = 'checkbox'; hp.name = 'botcheck'; hp.style.display = 'none';
+            form.appendChild(hp);
+          });
+        });
+
+        function getUtmParams() {
+          var params = new URLSearchParams(window.location.search);
+          var keys = ['gclid','utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbclid'];
+          var result = {};
+          keys.forEach(function(k) { if (params.get(k)) result[k] = params.get(k); });
+          return result;
+        }
+
+        function submitForm(form, formData, formName, btn, origText) {
+          var utms = getUtmParams();
+          var pageUrl = window.location.href;
+
+          // Build payload for Zapier
+          var payload = { form_name: formName, 'Page URL': pageUrl };
+          formData.forEach(function(val, key) {
+            if (key !== 'access_key' && key !== 'subject' && key !== 'recaptcha_response' && key !== 'botcheck') payload[key] = val;
+          });
+          Object.assign(payload, utms);
+
+          // Add UTM fields to Web3Forms submission too
+          Object.keys(utms).forEach(function(k) { formData.append(k, utms[k]); });
+          formData.append('page_url', pageUrl);
+          formData.append('form_name', formName);
+
+          // Submit to Web3Forms + Zapier in parallel
+          var web3 = fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
+          fetch('https://hooks.zapier.com/hooks/catch/15056432/3tal1j3/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(payload).toString(),
+            mode: 'no-cors'
+          }).catch(function() {});
+
+          web3.then(function(r) { return r.json(); }).then(function(data) {
+            if (data.success) {
+              if (typeof fbq === 'function') fbq('track', 'Lead');
+              if (window.dataLayer) window.dataLayer.push({ event: 'form_submission', form_name: formName });
+              window.location.href = '/thank-you/';
+            } else {
+              if (btn) { btn.innerHTML = 'Error — Try Again'; btn.disabled = false; }
+              setTimeout(function() { if (btn) btn.innerHTML = origText; }, 3000);
+            }
+          }).catch(function() {
+            if (btn) { btn.innerHTML = 'Error — Try Again'; btn.disabled = false; }
+            setTimeout(function() { if (btn) btn.innerHTML = origText; }, 3000);
+          });
+        }
+
+        // Clear custom validity when user edits phone field
+        document.addEventListener('input', function(e) {
+          if (e.target && e.target.name === 'Phone') {
+            e.target.setCustomValidity('');
+          }
+        });
+
+        document.addEventListener('submit', function(e) {
+          var form = e.target;
+          if (!form.matches || !form.matches('[data-form-name]')) return;
+          e.preventDefault();
+
+          // Phone validation - 7-15 digits
+          var phoneInput = form.querySelector('input[name="Phone"]');
+          if (phoneInput) {
+            var digits = phoneInput.value.replace(/\D/g, '');
+            if (digits.length < 7 || digits.length > 15) {
+              phoneInput.setCustomValidity('Please enter a valid phone number (e.g. 954-932-0764)');
+              phoneInput.reportValidity();
+              return;
+            }
+            phoneInput.setCustomValidity('');
+          }
+
+          var btn = form.querySelector('button[type="submit"]');
+          var origText = btn ? btn.innerHTML : '';
+          if (btn) { btn.innerHTML = 'Sending...'; btn.disabled = true; }
+
+          var formData = new FormData(form);
+          var formName = form.getAttribute('data-form-name');
+
+          // Get fresh reCaptcha v3 token
+          if (typeof grecaptcha !== 'undefined') {
+            grecaptcha.ready(function() {
+              grecaptcha.execute('6Lfr26EsAAAAALbvO6AH8o0hH-msBboNjMAtKweo', { action: 'contact' })
+                .then(function(token) {
+                  formData.append('recaptcha_response', token);
+                  submitForm(form, formData, formName, btn, origText);
+                });
+            });
+          } else {
+            submitForm(form, formData, formName, btn, origText);
+          }
+        });
+      })();
+    </script>
+    <script async src="https://www.google.com/recaptcha/api.js?render=6Lfr26EsAAAAALbvO6AH8o0hH-msBboNjMAtKweo"></script>
   </head>
-  <body class="font-body text-primary antialiased">
-    <Header />
-    <main>
-      <slot />
-    </main>
-    <Footer />
+  <body class="min-h-full flex flex-col">
+    <slot />
   </body>
 </html>

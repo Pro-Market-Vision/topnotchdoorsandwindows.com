@@ -1,0 +1,204 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import InnerHero from "@/components/InnerHero.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import Icon from "@/components/Icon.astro";
+import InternalLinksBlock from "@/components/InternalLinksBlock.astro";
+import { PHONE_DISPLAY, PHONE_TEL } from "@/data/site";
+
+const relatedLinks = [
+  { href: "/service/commercial-door-services/", label: "Commercial Door Services", description: "Full installation, repair & replacement for businesses." },
+  { href: "/service/impact-window-installation/", label: "Impact Window Installation", description: "Storm-rated windows for Florida and New York properties." },
+  { href: "/service/glass-repair-and-cutting/", label: "Glass Repair & Cutting", description: "Custom glass cuts and on-site repair work." },
+];
+
+const TOC = [
+  { id: "why-upgrade", label: "Why Upgrade Your Commercial Doors?" },
+  { id: "types-of-doors", label: "Types of Commercial Doors to Consider" },
+  { id: "steel-entry", label: "Steel Entry Doors" },
+  { id: "aluminum-glass", label: "Aluminum Glass Doors" },
+  { id: "hollow-metal", label: "Hollow Metal Doors" },
+  { id: "automatic-doors", label: "Automatic Sliding & Swing Doors" },
+  { id: "key-features", label: "Key Features to Look For" },
+  { id: "security", label: "Security" },
+  { id: "energy-efficiency", label: "Energy Efficiency" },
+  { id: "ada-compliance", label: "ADA Compliance" },
+  { id: "durability", label: "Durability & Low Maintenance" },
+  { id: "trust-experts", label: "Trust the Experts at Top Notch" },
+];
+---
+
+<Layout
+  title="New Commercial Doors: What to Look For When Upgrading | Top Notch Doors & Windows"
+  description="Upgrading your commercial doors? Learn what to look for in security, energy efficiency, ADA compliance, and durability. Expert guide from Top Notch Doors & Windows."
+  ogType="article"
+  ogImage="/images/blog/commercial-door-entrance-v2.jpg"
+>
+  <SiteHeader />
+  <main class="flex-1">
+    <InnerHero title="New Commercial Doors: What to Look For When Upgrading Your Business Entrance" kicker="From the Blog" />
+
+    <section class="bg-white">
+      <div class="mx-auto max-w-[1240px] px-5 lg:px-12 py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        {/* Sticky TOC sidebar */}
+        <aside class="lg:col-span-3 order-2 lg:order-1">
+          <div class="lg:sticky lg:top-[140px] bg-[#F5F5F5] border-l-4 border-[#004AAD] p-6">
+            <div class="font-[Bebas_Neue] text-[14px] uppercase tracking-[0.18em] text-[#004AAD]">On This Page</div>
+            <div class="mt-2 mb-4 h-[3px] w-10 bg-[#004AAD]" aria-hidden="true"></div>
+            <nav>
+              <ul class="space-y-2 text-[14px]">
+                {TOC.map((item) => (
+                  <li>
+                    <a
+                      href={`#${item.id}`}
+                      class="toc-link block py-1.5 font-[Roboto] text-[#4D4D4D] hover:text-[#004AAD] hover:translate-x-1 transition-all border-l-2 border-transparent pl-3"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Sidebar CTA */}
+            <div class="mt-8 pt-6 border-t border-[#E5E5E5]">
+              <div class="font-[Bebas_Neue] text-[18px] uppercase text-[#1D1D1D] mb-3">Need Help?</div>
+              <a
+                href={`tel:${PHONE_TEL}`}
+                class="flex items-center justify-center gap-2 bg-[#004AAD] text-white py-3 px-3 font-[Bebas_Neue] text-[16px] tracking-[0.08em] rounded-full border-2 border-[#004AAD] hover:bg-[#003a87] transition-colors"
+              >
+                <Icon name="phone" class="h-4 w-4" />
+                {PHONE_DISPLAY}
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        {/* Article body */}
+        <article class="lg:col-span-9 order-1 lg:order-2">
+          <img src="/images/blog/commercial-door-entrance-v2.jpg" alt="Commercial door entrance" class="w-full h-auto mb-10" />
+
+          <p class="font-[Roboto] text-[16px] leading-[26px] text-[#4D4D4D]">
+            When it comes to your business, first impressions matter — and nothing makes a stronger first impression than your front entrance. If you're considering upgrading your commercial doors, you're making a smart investment in security, energy efficiency, and curb appeal. Here's what to look for when choosing new commercial doors for your property.
+          </p>
+
+          <h2 id="why-upgrade" class="scroll-mt-32 mt-12 font-[Bebas_Neue] text-[36px] sm:text-[42px] leading-[1.05] text-[#333333] font-medium border-l-4 border-[#004AAD] pl-4">Why Upgrade Your Commercial Doors?</h2>
+          <p class="mt-4 font-[Roboto] text-[16px] leading-[26px] text-[#4D4D4D]">
+            Commercial doors take a lot of punishment. Years of daily foot traffic, weather exposure, and wear can leave doors looking worn, operating poorly, or even compromising your building's security. New commercial doors offer improved insulation, modern locking systems, ADA compliance, and a fresh, professional appearance that can elevate your entire business image.
+          </p>
+
+          <h2 id="types-of-doors" class="scroll-mt-32 mt-12 font-[Bebas_Neue] text-[36px] sm:text-[42px] leading-[1.05] text-[#333333] font-medium border-l-4 border-[#004AAD] pl-4">Types of Commercial Doors to Consider</h2>
+
+          <h3 id="steel-entry" class="scroll-mt-32 mt-8 font-[Bebas_Neue] text-[28px] text-[#1D1D1D]">Steel Entry Doors</h3>
+          <img src="/images/blog/steel-entry-doors.jpg" alt="Steel entry doors" class="w-full h-auto my-4" loading="lazy" />
+          <p class="font-[Roboto] text-[16px] leading-[26px] text-[#4D4D4D]">
+            Steel doors are among the most popular choices for commercial applications. They offer exceptional strength and security, excellent insulation properties, low maintenance requirements, and a long lifespan. Steel doors are ideal for warehouses, retail storefronts, office buildings, and any business where durability is a top priority. Learn more about our <a href="/service/commercial-door-services/" class="text-[#004AAD] font-semibold hover:underline">commercial door services</a>.
+          </p>
+
+          <h3 id="aluminum-glass" class="scroll-mt-32 mt-8 font-[Bebas_Neue] text-[28px] text-[#1D1D1D]">Aluminum Glass Doors</h3>
+          <img src="/images/blog/aluminum-glass-doors.jpg" alt="Aluminum glass doors" class="w-full h-auto my-4" loading="lazy" />
+          <p class="font-[Roboto] text-[16px] leading-[26px] text-[#4D4D4D]">
+            For businesses that want to maximize natural light and create an inviting, modern aesthetic, aluminum-framed glass doors are an excellent option. They provide a sleek, professional look, high visibility for customers, and can be customized with frosted or tinted glass for added privacy. Need glass work? Our team also handles <a href="/service/glass-repair-and-cutting/" class="text-[#004AAD] font-semibold hover:underline">glass repair and cutting</a> and <a href="/service/sliding-door-installation/" class="text-[#004AAD] font-semibold hover:underline">sliding glass door installation</a>.
+          </p>
+
+          <h3 id="hollow-metal" class="scroll-mt-32 mt-8 font-[Bebas_Neue] text-[28px] text-[#1D1D1D]">Hollow Metal Doors</h3>
+          <img src="/images/blog/hollow-metal-doors-v2.jpg" alt="Hollow metal doors" class="w-full h-auto my-4" loading="lazy" />
+          <p class="font-[Roboto] text-[16px] leading-[26px] text-[#4D4D4D]">
+            Hollow metal doors are a cost-effective and durable option commonly used for interior and secondary entrances. They offer fire-rating options, strong resistance to impact, and a variety of finishes to match your building's style.
+          </p>
+
+          <h3 id="automatic-doors" class="scroll-mt-32 mt-8 font-[Bebas_Neue] text-[28px] text-[#1D1D1D]">Automatic Sliding and Swing Doors</h3>
+          <img src="/images/blog/automatic-sliding-doors-v2.jpg" alt="Automatic sliding and swing doors" class="w-full h-auto my-4" loading="lazy" />
+          <p class="font-[Roboto] text-[16px] leading-[26px] text-[#4D4D4D]">
+            For high-traffic commercial spaces like grocery stores, medical facilities, or hotels, automatic doors provide convenience, accessibility, and a professional first impression. We offer installation and repair across our <a href="/location/miami/" class="text-[#004AAD] font-semibold hover:underline">Miami</a>, <a href="/location/palm-beach/" class="text-[#004AAD] font-semibold hover:underline">Palm Beach</a>, <a href="/location/weston/" class="text-[#004AAD] font-semibold hover:underline">Weston</a>, and <a href="/location/new-york/" class="text-[#004AAD] font-semibold hover:underline">New York</a> service areas.
+          </p>
+
+          <h2 id="key-features" class="scroll-mt-32 mt-12 font-[Bebas_Neue] text-[36px] sm:text-[42px] leading-[1.05] text-[#333333] font-medium border-l-4 border-[#004AAD] pl-4">Key Features to Look For</h2>
+
+          <h3 id="security" class="scroll-mt-32 mt-8 font-[Bebas_Neue] text-[28px] text-[#1D1D1D]">Security</h3>
+          <img src="/images/blog/door-security-features.jpg" alt="Door security features" class="w-full h-auto my-4" loading="lazy" />
+          <p class="font-[Roboto] text-[16px] leading-[26px] text-[#4D4D4D]">
+            Look for doors with heavy-duty frames, multi-point locking systems, and reinforced hinges. Commercial-grade hardware is essential for protecting your assets and your team.
+          </p>
+
+          <h3 id="energy-efficiency" class="scroll-mt-32 mt-8 font-[Bebas_Neue] text-[28px] text-[#1D1D1D]">Energy Efficiency</h3>
+          <img src="/images/blog/energy-efficient-doors-v2-1.jpg" alt="Energy efficient doors" class="w-full h-auto my-4" loading="lazy" />
+          <p class="font-[Roboto] text-[16px] leading-[26px] text-[#4D4D4D]">
+            Properly insulated doors can significantly reduce your heating and cooling costs. Look for doors with thermal breaks, weatherstripping, and quality seals around the frame. Pair your new doors with <a href="/service/impact-window-installation/" class="text-[#004AAD] font-semibold hover:underline">impact-rated windows</a> for maximum efficiency and storm protection.
+          </p>
+
+          <h3 id="ada-compliance" class="scroll-mt-32 mt-8 font-[Bebas_Neue] text-[28px] text-[#1D1D1D]">ADA Compliance</h3>
+          <p class="mt-4 font-[Roboto] text-[16px] leading-[26px] text-[#4D4D4D]">
+            If your business serves the public, ensuring your doors meet Americans with Disabilities Act (ADA) requirements is not just good practice — it's the law.
+          </p>
+
+          <h3 id="durability" class="scroll-mt-32 mt-8 font-[Bebas_Neue] text-[28px] text-[#1D1D1D]">Durability and Low Maintenance</h3>
+          <p class="mt-4 font-[Roboto] text-[16px] leading-[26px] text-[#4D4D4D]">
+            Commercial environments are tough on doors. Choose materials and finishes that resist rust, corrosion, and fading, so your investment lasts for years to come.
+          </p>
+
+          <h2 id="trust-experts" class="scroll-mt-32 mt-12 font-[Bebas_Neue] text-[36px] sm:text-[42px] leading-[1.05] text-[#333333] font-medium border-l-4 border-[#004AAD] pl-4">Trust the Experts at Top Notch Doors & Windows</h2>
+          <p class="mt-4 font-[Roboto] text-[16px] leading-[26px] text-[#4D4D4D]">
+            At Top Notch Doors & Windows, we specialize in commercial door installation and replacement across Florida and New York. Our experienced team will help you find the right door solution for your business needs and budget. Contact us today for a free estimate.
+          </p>
+
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a
+              href={`tel:${PHONE_TEL}`}
+              class="inline-flex items-center justify-center gap-2 bg-[#004AAD] text-white py-4 px-7 font-[Bebas_Neue] text-[18px] tracking-[0.1em] rounded-full border-2 border-[#004AAD] hover:bg-[#003a87] transition-colors"
+            >
+              <Icon name="phone" class="h-5 w-5" />
+              {PHONE_DISPLAY}
+            </a>
+            <a
+              href="#contact"
+              class="inline-flex items-center justify-center gap-2 bg-white text-[#004AAD] py-4 px-7 font-[Bebas_Neue] text-[18px] tracking-[0.1em] rounded-full border-2 border-[#004AAD] hover:bg-[#004AAD] hover:text-white transition-colors"
+            >
+              Free Estimate
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <script>
+      // Highlight active TOC link as user scrolls
+      const headings = document.querySelectorAll("h2[id], h3[id]");
+      const tocLinks = document.querySelectorAll(".toc-link");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              tocLinks.forEach((link) => {
+                if (link.getAttribute("href") === `#${id}`) {
+                  link.classList.add("text-[#004AAD]", "border-[#004AAD]", "font-medium");
+                  link.classList.remove("border-transparent");
+                } else {
+                  link.classList.remove("text-[#004AAD]", "border-[#004AAD]", "font-medium");
+                  link.classList.add("border-transparent");
+                }
+              });
+            }
+          });
+        },
+        { rootMargin: "-30% 0px -60% 0px" }
+      );
+      headings.forEach((h) => observer.observe(h));
+    </script>
+
+    <InternalLinksBlock
+      kicker="Explore More"
+      heading="Related Services"
+      intro="Looking for help with another door or window project? We offer a full range of services for homes and businesses across Florida and New York."
+      links={relatedLinks}
+      columns={3}
+    />
+
+    <ContactSection />
+  </main>
+  <SiteFooter />
+</Layout>
