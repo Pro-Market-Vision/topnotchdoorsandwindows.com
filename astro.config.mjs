@@ -1,15 +1,16 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
-import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel';
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
+import sitemap from "@astrojs/sitemap";
 
+// https://astro.build/config
 export default defineConfig({
-  site: 'https://topnotchdoorsandwindows.com',
-  output: 'static',
-  adapter: vercel(),
-  vite: {
-    plugins: [tailwindcss()]
+  site: "https://topnotchdoorsandwindows.com",
+  trailingSlash: "always",
+  build: {
+    format: "directory",
   },
-  integrations: [sitemap()]
+  integrations: [sitemap()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

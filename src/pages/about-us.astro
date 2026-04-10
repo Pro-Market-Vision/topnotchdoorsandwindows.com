@@ -1,72 +1,146 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import Stats from '../components/Stats.astro';
-import ServiceFilter from '../components/ServiceFilter.astro';
-import FAQ from '../components/FAQ.astro';
-import ContactForm from '../components/ContactForm.astro';
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import InnerHero from "@/components/InnerHero.astro";
+import ServicesSection from "@/components/ServicesSection.astro";
+import CtaBannerSection from "@/components/CtaBannerSection.astro";
+import FaqSection from "@/components/FaqSection.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import PrimaryButton from "@/components/PrimaryButton.astro";
+import Icon from "@/components/Icon.astro";
+import InternalLinksBlock from "@/components/InternalLinksBlock.astro";
+import pagesContent from "@/data/pages-content.json";
+import { PHONE_DISPLAY, PHONE_TEL, LOCATIONS } from "@/data/site";
+
+const locationLinks = LOCATIONS.map((loc) => ({
+  href: `/location/${loc.slug}/`,
+  label: `${loc.name}, ${loc.state}`,
+  description: `Trusted door & window service in ${loc.name}.`,
+}));
+
+const page = (pagesContent as Record<string, any>)["about-us"];
+const aboutSection = page.sections.find((s: any) => s.heading.startsWith("Your Trusted Experts"));
+// Strip stat-style lines (e.g., "1,000+ Projects Completed", "10+ Years delivering Quality")
+// since those numbers are already shown in the dedicated stats strip below this section.
+const aboutParagraphs: string[] = (aboutSection?.intro || []).filter(
+  (p: string) => !/^\s*[\d,]+\+?%?\s+/.test(p)
+);
+
+const STATS = [
+  { value: "1,000+", label: "Projects Completed" },
+  { value: "97%", label: "Referral Rate" },
+  { value: "10+", label: "Years delivering Quality" },
+];
+
+const VALUES = [
+  {
+    title: "Affordable, Transparent Pricing",
+    body: 'We believe great service shouldn\'t come with hidden costs. That\'s why we provide <a href="/contact-us/" class="text-[#004AAD] font-semibold hover:underline">free, no-obligation estimates</a> for all our services.',
+  },
+  {
+    title: "Skilled & Friendly Technicians",
+    body: 'Our experienced team handles everything from <a href="/service/sliding-door-repair/" class="text-[#004AAD] font-semibold hover:underline">sliding door repair</a> to <a href="/service/impact-window-installation/" class="text-[#004AAD] font-semibold hover:underline">impact window installation</a> with care and respect for your home or business.',
+  },
+  {
+    title: "Warranty-Backed Workmanship",
+    body: "We stand by what we do. All services are backed by solid warranties, giving you confidence and peace of mind.",
+  },
+  {
+    title: "Fast Response, Local Support",
+    body: 'Based in Florida and serving <a href="/location/new-york/" class="text-[#004AAD] font-semibold hover:underline">New York</a>, we understand local needs and respond quickly. See all our <a href="/#services" class="text-[#004AAD] font-semibold hover:underline">service areas</a>.',
+  },
+];
 ---
 
 <Layout
-  title="About Us | Top Notch Doors & Windows Fort Lauderdale"
-  description="Learn about Top Notch Doors & Windows — Fort Lauderdale's trusted sliding door repair & window experts. 1,000+ projects, 97% referral rate. Free estimates."
+  title="About Us — Top Notch Doors & Windows | Florida & New York"
+  description="Meet the team behind Top Notch Doors & Windows. 10+ years, 1,000+ projects completed, 97% referral rate. Affordable pricing, skilled technicians, warranty-backed work across Florida & New York."
 >
-  <Hero
-    headline="Your Trusted Sliding Door & Window Experts in Fort Lauderdale"
-    subtitle="Welcome to Top Notch Doors & Windows"
-  />
+  <SiteHeader />
+  <main class="flex-1">
+    <InnerHero title={page?.h1 || "About Us"} />
 
-  <!-- About Content -->
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <p class="text-gray-600 text-lg leading-relaxed mb-8">
-        Welcome to Top Notch Doors & Windows — where quality craftsmanship meets dependable service. We're proud to be a local leader in <a href="/" class="text-primary hover:underline">sliding door and window solutions</a> in Fort Lauderdale and across South Florida, bringing years of hands-on experience and a passion for excellence to every job we do.
-      </p>
-    </div>
-  </section>
-
-  <Stats />
-
-  <!-- Why Choose Us -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="font-heading text-4xl md:text-5xl text-center mb-10 tracking-wide">Why Choose Our Door & Window Services</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="text-center p-6 bg-gray-light rounded-lg">
-          <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          </div>
-          <h3 class="font-heading text-xl tracking-wide mb-2">Affordable, Transparent Pricing</h3>
-          <p class="text-gray-600 text-sm">Complimentary, no-obligation estimates without hidden charges for all sliding door and window repairs.</p>
+    {/* Section 1 — About copy: image LEFT (about-sliding-doors), text RIGHT */}
+    <section class="bg-white">
+      <div class="mx-auto max-w-[1200px] px-5 lg:px-12 py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div class="lg:col-span-6">
+          <img src="/images/about-sliding-doors.jpg" alt="Top Notch Doors & Windows installations" class="w-full h-auto" />
         </div>
-        <div class="text-center p-6 bg-gray-light rounded-lg">
-          <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+        <div class="lg:col-span-6">
+          <h2 class="font-[Bebas_Neue] text-[42px] sm:text-[50px] lg:text-[55px] leading-[1] text-[#333333] font-medium">
+            Your Trusted Experts in Sliding Doors & Windows
+          </h2>
+          {aboutParagraphs.map((p) => (
+            <p class="mt-6 font-[Roboto] text-[16px] leading-[26px] text-[#4D4D4D]">{p}</p>
+          ))}
+          <div class="mt-6 flex flex-wrap gap-4">
+            <PrimaryButton href={`tel:${PHONE_TEL}`} variant="solid">
+              <Icon name="phone" class="h-4 w-4" />
+              {PHONE_DISPLAY}
+            </PrimaryButton>
+            <PrimaryButton href="#contact">Free Estimate</PrimaryButton>
           </div>
-          <h3 class="font-heading text-xl tracking-wide mb-2">Skilled & Friendly Technicians</h3>
-          <p class="text-gray-600 text-sm">Experienced team trained to treat your property with care and respect.</p>
-        </div>
-        <div class="text-center p-6 bg-gray-light rounded-lg">
-          <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-          </div>
-          <h3 class="font-heading text-xl tracking-wide mb-2">Warranty-Backed Workmanship</h3>
-          <p class="text-gray-600 text-sm">All door and window services include solid warranties for your confidence.</p>
-        </div>
-        <div class="text-center p-6 bg-gray-light rounded-lg">
-          <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-          </div>
-          <h3 class="font-heading text-xl tracking-wide mb-2">Fast Response, Local Support</h3>
-          <p class="text-gray-600 text-sm">Based in Fort Lauderdale with quick community response times across South Florida.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <ServiceFilter />
+    {/* Section 2 — Stats strip */}
+    <section class="bg-white border-y border-[#E5E5E5]">
+      <div class="mx-auto max-w-[1200px] px-5 lg:px-12 py-12 grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[#E5E5E5]">
+        {STATS.map((s) => (
+          <div class="flex flex-col items-center justify-center text-center py-6 sm:py-2">
+            <div class="font-[Bebas_Neue] text-[60px] leading-none text-[#004AAD]">{s.value}</div>
+            <div class="mt-2 font-[Roboto] text-[14px] font-medium uppercase tracking-[0.06em] text-[#1D1D1D]">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
 
-  <FAQ />
+    {/* Section 3 — Why Choose Us: image LEFT (about-top-notch), text + 4 cards RIGHT, same heading */}
+    <section class="bg-white">
+      <div class="mx-auto max-w-[1200px] px-5 lg:px-12 py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div class="lg:col-span-6">
+          <img src="/images/about-top-notch.jpg" alt="Top Notch Doors & Windows team" class="w-full h-auto" />
+        </div>
+        <div class="lg:col-span-6">
+          <h2 class="font-[Bebas_Neue] text-[42px] sm:text-[50px] lg:text-[55px] leading-[1] text-[#333333] font-medium">
+            Why Choose Top Notch Doors & Windows
+          </h2>
+          <div class="mt-6 space-y-5">
+            {VALUES.map((v) => (
+              <div>
+                <h3 class="font-[Bebas_Neue] text-[22px] text-[#1D1D1D]">
+                  {v.title} <span class="font-[Roboto] text-[16px] font-normal text-[#4D4D4D]" set:html={` &ndash; ${v.body}`} />
+                </h3>
+              </div>
+            ))}
+          </div>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <PrimaryButton href={`tel:${PHONE_TEL}`} variant="solid">
+              <Icon name="phone" class="h-4 w-4" />
+              {PHONE_DISPLAY}
+            </PrimaryButton>
+            <PrimaryButton href="#contact">Free Estimate</PrimaryButton>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <ContactForm />
+    <CtaBannerSection />
+    <ServicesSection />
+
+    <InternalLinksBlock
+      kicker="Where We Work"
+      heading="Service Areas Across Florida & New York"
+      intro="See how we serve homeowners and businesses in your city."
+      links={locationLinks}
+      columns={4}
+      variant="dark"
+    />
+
+    <FaqSection />
+    <ContactSection />
+  </main>
+  <SiteFooter />
 </Layout>
